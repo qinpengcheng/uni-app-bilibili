@@ -1,16 +1,79 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ 
 		{
-			"path": "pages/index/index",
+			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "首页",
+				"usingComponents":{
+					"van-tabs": "/wxcomponents/dist/tabs/index",
+					"van-search": "/wxcomponents/dist/search/index",
+					"van-tab": "/wxcomponents/dist/tab/index"
+	   			}
+			}
+		},
+		{
+			"path": "pages/search/index",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"usingComponents":{
+					"van-search": "/wxcomponents/dist/search/index"
+	   			}
+			}
+		},
+		{
+			"path": "pages/play/index",
+			"style": {
+				"navigationBarTitleText": "play",
+				"usingComponents":{
+					"van-search": "/wxcomponents/dist/search/index",
+					"van-tabs": "/wxcomponents/dist/tabs/index",
+					"van-tab": "/wxcomponents/dist/tab/index"
+	   			}
+			}
+		},
+		{
+			"path": "pages/partition/index",
+			"style": {
+				"navigationBarTitleText": "分区"
+			}
+		},
+		{
+			"path": "pages/auth/index",
+			"style": {
+				"navigationBarTitleText": "我的"
 			}
 		}
 	],
+	"tabBar": {
+		"color": "#757575",
+		"selectedColor": "#fd7299",
+		"backgroundColor": "#fff",
+		"borderStyle": "black",
+		"position": "bottom", 
+		"list": [
+			{
+		  "pagePath": "pages/home/index",
+		  "text": "首页",
+		  "iconPath":"./static/tabicon/icon-home.png",
+		  "selectedIconPath":"./static/tabicon/icon-home-active.png"
+		}, {
+		  "pagePath": "pages/partition/index",
+		  "text": "分区",
+		  "iconPath":"./static/tabicon/icon-partition.png",
+		  "selectedIconPath":"./static/tabicon/icon-partition-active.png"
+		}, {
+			"pagePath": "pages/auth/index",
+			"text": "我的",
+			"iconPath":"./static/tabicon/icon-auth.png",
+			"selectedIconPath":"./static/tabicon/icon-auth-active.png"
+		  }
+	]
+	  },
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	}
+	
 }
