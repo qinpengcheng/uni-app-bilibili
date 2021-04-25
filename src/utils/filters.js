@@ -21,13 +21,19 @@ const filters = {
   },
   filterDuration(value) {
     if (typeof value === "number") {
-      value = formatDuaction(value);
+      return formatDuaction(value);
     } else {
-      if (value.length === 4) {
-        return "0" + value;
+      const arr = value.split(":");
+      let left = arr[0];
+      let right = arr[1];
+      if (right.length === 1) {
+        right = "0" + right;
       }
+      if (left.length === 1) {
+        left = "0" + left;
+      }
+      return `${left}:${right}`;
     }
-    return value;
   },
   filterPlay(val) {
     let w = 0;

@@ -16,6 +16,12 @@ export default {
 @import "./font/iconfont.css";
 @import "./wxcomponents/dist/common/index.wxss";
 /*每个页面公共css */
+.ellipsis {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
 view {
   font-size: 24rpx;
 }

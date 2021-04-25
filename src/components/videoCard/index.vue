@@ -1,12 +1,18 @@
 <template>
-  <view class="video-card" @click="linkTo(data.aid)">
+  <view
+    :class="{
+      'video-card': true,
+      'video-card__2': type === '2' || type === '3'
+    }"
+    @click="linkTo(data.aid)"
+  >
     <VideoCover
       :src="data.pic"
       :duration="data.duration"
       class="video-card-img"
     />
     <view class="video-card-content">
-      <view class="video-title">{{ data.title }}</view>
+      <view class="video-title ellipsis">{{ data.title }}</view>
       <view class="video-info">
         <view class="videp-info-auth"
           ><text class="iconfont">&#xe665;</text> {{ data.author }}</view
@@ -16,8 +22,16 @@
             <text class="iconfont">&#xe60c;</text
             >{{ data.play | filterPlay }}</view
           >
-          <view>{{ data.ctime | filterTime }}</view>
-          <text class="iconfont">&#xe6e6;</text>
+          <view v-if="type === '1' || type === '3'">{{
+            data.ctime | filterTime(type === "3" ? "yyyy-MM-dd" : "MM-dd")
+          }}</view>
+          <view v-if="type === '2'">
+            <text class="iconfont">&#xe666;</text>
+            {{ data.danmaku }}
+          </view>
+          <!-- 占位用 -->
+          <text v-if="type === '2' || type === '3'"></text>
+          <text v-if="type === '1'" class="iconfont">&#xe6e6;</text>
         </view>
       </view>
     </view>
@@ -33,6 +47,10 @@ export default {
     VideoCover
   },
   props: {
+    type: {
+      type: String,
+      default: "1"
+    },
     isLink: {
       type: Boolean,
       default: false
@@ -67,7 +85,7 @@ export default {
   padding: 20rpx;
   border-bottom: 1px solid #f2f2f2;
   &-img {
-    width: 44%;
+    width: 40vw;
     height: 180rpx;
     flex-shrink: 0;
   }
@@ -83,11 +101,17 @@ export default {
     .video-info {
       color: #999999;
       .videp-info-action {
-        margin-top: 10rpx;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
+    }
+  }
+  &__2 {
+    .video-card-img {
+      width: 30vw;
+      height: 140rpx;
+      flex-shrink: 0;
     }
   }
 }

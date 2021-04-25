@@ -21,10 +21,18 @@ export function getHotwordList(data) {
     data
   });
 }
-// 获取热门搜索
-export function searchData(data) {
+// 搜索时的提示
+export function searchSuggest(data) {
   return request({
     url: `${baseUrl}/search/suggest`,
+    data
+  });
+}
+// 搜索
+export function getSearchData(data) {
+  return request({
+    url: `${baseUrl}/search`,
+    method: "post",
     data
   });
 }

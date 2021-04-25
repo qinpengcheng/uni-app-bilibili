@@ -1,5 +1,6 @@
 {
 	"pages": [ 
+		
 		{
 			"path": "pages/home/index",
 			"style": {
@@ -16,7 +17,9 @@
 			"style": {
 				"navigationBarTitleText": "搜索",
 				"usingComponents":{
-					"van-search": "/wxcomponents/dist/search/index"
+					"van-tabs": "/wxcomponents/dist/tabs/index",
+					"van-search": "/wxcomponents/dist/search/index",
+					"van-tab": "/wxcomponents/dist/tab/index"
 	   			}
 			}
 		},

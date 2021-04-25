@@ -13,25 +13,26 @@
     >
       <van-tab title="简介" name="1">
         <view class="video-introduction">
-          <view class="title"> {{ videoInfo.title || "" }}</view>
-          <view class="info">
-            <text>{{ videoInfo.owner.name || "" }}</text>
-            <view class="info-right">
-              <text>{{ videoInfo.stat.view || 0 }}次观看</text>
-              <text>{{ videoInfo.stat.danmaku || 0 }}弹幕</text>
-              <text>{{ videoInfo.ctime }}</text>
-              <text
-                @click="handleToggle"
-                :class="{ iconfont: true, up: isOpen }"
-                >&#xe641;</text
-              >
-            </view>
-          </view>
-          <view :class="{ describe: true, 'is-open': isOpen }">{{
-            videoInfo.desc
-          }}</view>
           <scroll-view scroll-y class="recommend-list">
+            <view class="title"> {{ videoInfo.title || "" }}</view>
+            <view class="info">
+              <text>{{ videoInfo.owner.name || "" }}</text>
+              <view class="info-right">
+                <text>{{ videoInfo.stat.view || 0 }}次观看</text>
+                <text>{{ videoInfo.stat.danmaku || 0 }}弹幕</text>
+                <text>{{ videoInfo.ctime }}</text>
+                <text
+                  @click="handleToggle"
+                  :class="{ iconfont: true, up: isOpen }"
+                  >&#xe641;</text
+                >
+              </view>
+            </view>
+            <view :class="{ describe: true, 'is-open': isOpen }">{{
+              videoInfo.desc
+            }}</view>
             <VideoCard
+              type="2"
               @on-click="handleClick"
               v-for="item in recommendList"
               :key="item.aid"
@@ -110,7 +111,8 @@ export default {
         ctime: item.ctime,
         play: item.stat.view,
         author: item.owner.name,
-        aid: item.aid
+        aid: item.aid,
+        danmaku: item.stat.danmaku
       }));
     }
   }
@@ -159,7 +161,7 @@ export default {
       }
     }
     .recommend-list {
-      height: 48vh;
+      height: 60vh;
     }
   }
 }
