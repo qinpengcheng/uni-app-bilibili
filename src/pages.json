@@ -1,10 +1,16 @@
 {
 	"pages": [ 
+		{
+			"path": "pages/partition/index",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩"
+			}
+		},
 		
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationBarTitleText": "首页",
+				"navigationBarTitleText": "哔哩哔哩",
 				"usingComponents":{
 					"van-tabs": "/wxcomponents/dist/tabs/index",
 					"van-search": "/wxcomponents/dist/search/index",
@@ -34,16 +40,11 @@
 	   			}
 			}
 		},
-		{
-			"path": "pages/partition/index",
-			"style": {
-				"navigationBarTitleText": "分区"
-			}
-		},
+		
 		{
 			"path": "pages/auth/index",
 			"style": {
-				"navigationBarTitleText": "我的"
+				"navigationBarTitleText": "哔哩哔哩"
 			}
 		}
 	],
@@ -75,7 +76,7 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#ffffff",
 		"backgroundColor": "#F8F8F8"
 	}
 	

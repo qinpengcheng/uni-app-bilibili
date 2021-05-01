@@ -79,7 +79,8 @@ export default {
         ctime: item.ctime,
         play: item.stat.view,
         author: item.author.name,
-        aid: item.aid
+        aid: item.aid,
+        hotDesc: item.hot_desc
       }));
     }
   }

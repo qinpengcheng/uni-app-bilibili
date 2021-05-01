@@ -18,9 +18,9 @@
             <view class="info">
               <text>{{ videoInfo.owner.name || "" }}</text>
               <view class="info-right">
-                <text>{{ videoInfo.stat.view || 0 }}次观看</text>
+                <text>{{ videoInfo.stat.view | filterPlay }}次观看</text>
                 <text>{{ videoInfo.stat.danmaku || 0 }}弹幕</text>
-                <text>{{ videoInfo.ctime }}</text>
+                <text>{{ videoInfo.ctime | filterTime("yyyy-MM-dd") }}</text>
                 <text
                   @click="handleToggle"
                   :class="{ iconfont: true, up: isOpen }"

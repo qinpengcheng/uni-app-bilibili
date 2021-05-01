@@ -14,10 +14,13 @@
     <view class="video-card-content">
       <view class="video-title ellipsis">{{ data.title }}</view>
       <view class="video-info">
-        <view class="videp-info-auth"
+        <view class="video-info-desc" v-if="data.hotDesc">
+          <text>{{ data.hotDesc }}</text>
+        </view>
+        <view class="video-info-auth"
           ><text class="iconfont">&#xe665;</text> {{ data.author }}</view
         >
-        <view class="videp-info-action">
+        <view class="video-info-action">
           <view>
             <text class="iconfont">&#xe60c;</text
             >{{ data.play | filterPlay }}</view
@@ -100,7 +103,16 @@ export default {
     }
     .video-info {
       color: #999999;
-      .videp-info-action {
+      &-desc {
+        text {
+          font-size: 20rpx;
+          border-radius: 5rpx;
+          padding: 0 4rpx;
+          color: #eea26b;
+          border: 2rpx solid #eea26b;
+        }
+      }
+      .video-info-action {
         display: flex;
         align-items: center;
         justify-content: space-between;
