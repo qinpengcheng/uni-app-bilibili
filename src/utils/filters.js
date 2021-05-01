@@ -16,8 +16,8 @@ const formatDuaction = (val) => {
   return `${isMin(m)}:${isMin(s)}`;
 };
 const filters = {
-  filterImg(url) {
-    return url + "@200w_120h.png";
+  filterImg(url, format = "@200w_120h.png") {
+    return url + format;
   },
   filterDuration(value) {
     if (typeof value === "number") {
@@ -36,6 +36,7 @@ const filters = {
     }
   },
   filterPlay(val) {
+    if (!val) return 0;
     let w = 0;
     if (val / 10000 >= 1) {
       w = (val / 10000).toFixed(1);

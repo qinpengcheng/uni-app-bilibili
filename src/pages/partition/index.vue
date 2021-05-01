@@ -2,8 +2,9 @@
   <view class="partition">
     <view
       class="partition-item"
-      v-for="(item, index) in partitionData"
-      :key="index"
+      v-for="item in partitionData"
+      :key="item.type"
+      @click="linkTo(item)"
     >
       <img
         class="icon"
@@ -23,108 +24,115 @@ export default {
         {
           name: "番剧",
           imgName: "fanju",
-          type: 0
+          type: 1
         },
         {
           name: "国创",
           imgName: "guochuang",
-          type: 0
+          type: 2
         },
         {
           name: "纪录片",
           imgName: "jilupian",
-          type: 0
+          type: 3
         },
         {
           name: "动画",
           imgName: "donghua",
-          type: 0
+          type: 4
         },
         {
           name: "音乐",
           imgName: "yinyue",
-          type: 0
+          type: 5
         },
         {
           name: "舞蹈",
           imgName: "wudao",
-          type: 0
+          type: 6
         },
         {
           name: "游戏",
           imgName: "youxi",
-          type: 0
+          type: 7
         },
         {
           name: "知识",
           imgName: "zhishi",
-          type: 0
+          type: 8
         },
         {
           name: "数码",
           imgName: "shuma",
-          type: 0
+          type: 9
         },
         {
           name: "汽车",
           imgName: "qiche",
-          type: 0
+          type: 10
         },
         {
           name: "生活",
           imgName: "shenghuo",
-          type: 0
+          type: 11
         },
         {
           name: "美食",
           imgName: "meishi",
-          type: 0
+          type: 12
         },
         {
           name: "动物圈",
           imgName: "dongwuquan",
-          type: 0
+          type: 13
         },
         {
           name: "鬼畜",
           imgName: "guichu",
-          type: 0
+          type: 14
         },
         {
           name: "时尚",
           imgName: "shishang",
-          type: 0
+          type: 15
         },
         {
           name: "娱乐",
           imgName: "yule",
-          type: 0
+          type: 16
         },
         {
           name: "影视",
           imgName: "yingshi",
-          type: 0
+          type: 17
         },
         {
           name: "电影",
           imgName: "dianying",
-          type: 0
+          type: 18
         },
         {
           name: "电视剧",
           imgName: "dianshiju",
-          type: 0
+          type: 19
         },
         {
           name: "游戏赛事",
           imgName: "youxisaishi",
-          type: 0
+          type: 20
         }
       ]
     };
   },
   onLoad() {},
-  methods: {}
+  methods: {
+    linkTo(row) {
+      console.log(row);
+      uni.navigateTo({
+        url: `../partitionDetail/index?title=${row.name}&type=${row.type}`
+      });
+    }
+  }
 };
 </script>
 

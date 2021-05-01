@@ -14,12 +14,14 @@
       <van-tab title="简介" name="1">
         <view class="video-introduction">
           <scroll-view scroll-y class="recommend-list">
-            <view class="title"> {{ videoInfo.title || "" }}</view>
+            <view class="title  ellipsis--1"> {{ videoInfo.title || "" }}</view>
             <view class="info">
-              <text>{{ videoInfo.owner.name || "" }}</text>
+              <text class="info-left ellipsis--1">{{
+                videoInfo.owner.name || ""
+              }}</text>
               <view class="info-right">
                 <text>{{ videoInfo.stat.view | filterPlay }}次观看</text>
-                <text>{{ videoInfo.stat.danmaku || 0 }}弹幕</text>
+                <text>{{ videoInfo.stat.danmaku | filterPlay }}弹幕</text>
                 <text>{{ videoInfo.ctime | filterTime("yyyy-MM-dd") }}</text>
                 <text
                   @click="handleToggle"
@@ -33,7 +35,7 @@
             }}</view>
             <VideoCard
               type="2"
-              @on-click="handleClick"
+              @on-click="handleVideoClick"
               v-for="item in recommendList"
               :key="item.aid"
               :data="item"
@@ -41,7 +43,11 @@
           </scroll-view>
         </view>
       </van-tab>
-      <van-tab title="评论" name="2"> </van-tab>
+      <van-tab :title="`评论${videoInfo.stat.reply}`" name="2">
+        <scroll-view scroll-y class="scroll-comment" @scrolltolower="loadMore">
+          <VideoComment :data="videoCommnetData" />
+        </scroll-view>
+      </van-tab>
     </van-tabs>
   </view>
 </template>
@@ -51,12 +57,15 @@ import {
   getVideoInfo,
   getPlayUrl,
   getVideoUrl,
+  getVideoComments,
   getRecommendList
 } from "@/api/index";
 import VideoCard from "@/components/videoCard/index";
+import VideoComment from "@/components/videoComment/index";
 import VideoPlayer from "@/components/videoPlayer/index";
 export default {
   components: {
+    VideoComment,
     VideoPlayer,
     VideoCard
   },
@@ -65,11 +74,16 @@ export default {
       title: "playvideo",
       videoInfo: {
         owner: {},
-        stat: {}
+        stat: {
+          reply: 0
+        }
       },
       videoUrl: "",
       recommendList: [],
-      isOpen: false
+      isOpen: false,
+      videoCommnetData: [],
+      videoCommnetPage: 1,
+      isLoadMore: true
     };
   },
   onLoad({ aId }) {
@@ -77,22 +91,57 @@ export default {
     this.getRecommendList(aId);
   },
   methods: {
-    // 点击推荐时
-    handleClick(aId) {
+    //上拉加载评论
+    async loadMore() {
+      if (this.isLoadMore) {
+        this.videoCommnetPage++;
+        this.isLoadMore = false;
+        await this.getVideoComments();
+        setTimeout(() => {
+          this.isLoadMore = true;
+        }, 500);
+      }
+    },
+    // 重置评论
+    resetComment() {
+      this.isLoadMore = true;
+      this.videoCommnetPage = 1;
+      this.videoCommnetData = [];
+    },
+    // 点击推荐视频时
+    handleVideoClick(aId) {
+      this.resetComment();
       this.getVideoInfo(aId);
       this.getRecommendList(aId);
     },
+    // 视频描述展开
     handleToggle() {
       this.isOpen = !this.isOpen;
     },
+    // tab切换时
     onChange(e) {
-      console.log(e);
+      const index = e.detail.index;
+      if (index === 1 && !this.videoCommnetData.length) {
+        this.getVideoComments();
+      }
+    },
+    // 视频评论
+    async getVideoComments() {
+      const data = {
+        pn: this.videoCommnetPage,
+        oId: this.videoId
+      };
+      const res = await getVideoComments(data);
+      if (res.code === "1") {
+        this.videoCommnetData.push(...res.data.replies);
+      }
     },
     // 视频详情
     async getVideoInfo(aId) {
       const res = await getVideoInfo(aId);
       this.videoInfo = res.data;
       const cId = res.data.cid;
+      this.videoId = aId;
       this.getPlayUrl(aId, cId);
     },
     // 播放地址
@@ -131,6 +180,9 @@ export default {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      &-left {
+        width: 190rpx;
+      }
       &-right {
         color: #999999;
         text {
@@ -163,6 +215,9 @@ export default {
     .recommend-list {
       height: 60vh;
     }
+  }
+  .scroll-comment {
+    height: 60vh;
   }
 }
 </style>

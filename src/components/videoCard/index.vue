@@ -30,7 +30,7 @@
           }}</view>
           <view v-if="type === '2'">
             <text class="iconfont">&#xe666;</text>
-            {{ data.danmaku }}
+            {{ data.danmaku | filterPlay }}
           </view>
           <!-- 占位用 -->
           <text v-if="type === '2' || type === '3'"></text>

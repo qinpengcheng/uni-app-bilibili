@@ -1,13 +1,6 @@
 {
 	"pages": [ 
 		{
-			"path": "pages/partition/index",
-			"style": {
-				"navigationBarTitleText": "哔哩哔哩"
-			}
-		},
-		
-		{
 			"path": "pages/home/index",
 			"style": {
 				"navigationBarTitleText": "哔哩哔哩",
@@ -16,6 +9,29 @@
 					"van-search": "/wxcomponents/dist/search/index",
 					"van-tab": "/wxcomponents/dist/tab/index"
 	   			}
+			}
+		},
+		{
+			"path": "pages/play/index",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩",
+				"usingComponents":{
+					"van-search": "/wxcomponents/dist/search/index",
+					"van-tabs": "/wxcomponents/dist/tabs/index",
+					"van-tab": "/wxcomponents/dist/tab/index"
+	   			}
+			}
+		},
+		{
+			"path": "pages/partition/index",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩"
+			}
+		},
+		{
+			"path": "pages/partitionDetail/index",
+			"style": {
+				"navigationBarTitleText": "哔哩哔哩"
 			}
 		},
 		{
@@ -29,17 +45,7 @@
 	   			}
 			}
 		},
-		{
-			"path": "pages/play/index",
-			"style": {
-				"navigationBarTitleText": "play",
-				"usingComponents":{
-					"van-search": "/wxcomponents/dist/search/index",
-					"van-tabs": "/wxcomponents/dist/tabs/index",
-					"van-tab": "/wxcomponents/dist/tab/index"
-	   			}
-			}
-		},
+		
 		
 		{
 			"path": "pages/auth/index",

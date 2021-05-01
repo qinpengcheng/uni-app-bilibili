@@ -22,6 +22,11 @@ export default {
   -webkit-line-clamp: 2;
   overflow: hidden;
 }
+.ellipsis--1 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 view {
   font-size: 24rpx;
 }

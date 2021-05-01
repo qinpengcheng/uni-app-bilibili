@@ -1,5 +1,12 @@
 import request from "@/utils/request";
 const baseUrl = "http://192.168.1.103:3011";
+// 获取游戏赛事数据
+export function getGameEventsList(data) {
+  return request({
+    url: `${baseUrl}/gameevents`,
+    data
+  });
+}
 // 获取热门数据
 export function getHotList(data) {
   return request({
@@ -54,9 +61,11 @@ export function getVideoUrl(url) {
   return `${baseUrl}/transfer/mp4?video=${url}`;
 }
 // 获取视频评论
-export function getVideoComments(aId, cId) {
+export function getVideoComments(data) {
   return request({
-    url: `https://api.bilibili.com/x/v2/reply?&type=1&pn=1&oid=375194759`
+    // url: `https://api.bilibili.com/x/v2/reply?&type=1&pn=1&oid=375194759`
+    url: `${baseUrl}/comment`,
+    data
   });
 }
 //获取视频弹幕
